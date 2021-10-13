@@ -17,41 +17,41 @@ import kotlin.math.*
 
 class Game(private var context: Context,view: TextView) {
 
-        private var pointsView: TextView = view
-        private var points : Int = 0
-        //bitmap of the pacman
-        var pacBitmap: Bitmap
-        var coinBitmap: Bitmap
-        var enemyBitmap: Bitmap
-        var pacx: Int = 0
-        var pacy: Int = 0
+    private var pointsView: TextView = view
+    private var points : Int = 0
+    //bitmap of the pacman
+    var pacBitmap: Bitmap
+    var coinBitmap: Bitmap
+    var enemyBitmap: Bitmap
+    var pacx: Int = 0
+    var pacy: Int = 0
 
-        var timer: Timer? = null
-        var timer2: Timer? = null
+    var timer: Timer? = null
+    var timer2: Timer? = null
 
-        var running = true
+    var running = true
 
 
-        var currentRotateValue = 0F
-        var moving = 20
+    var currentRotateValue = 0F
+    var moving = 20
 
-        //did we initialize the coins?
-        var coinsInitialized = false
+    //did we initialize the coins?
+    var coinsInitialized = false
 
-        //Resets coins
-        var coinReset = 0
+    //Resets coins
+    var coinReset = 0
 
-        //the list of goldcoins - initially empty
-        var coins = ArrayList<GoldCoin>()
+    //the list of goldcoins - initially empty
+    var coins = ArrayList<GoldCoin>()
 
-        //enemies
-        var enemies = ArrayList<Enemy>()
-        var enemyCount = 0
+    //enemies
+    var enemies = ArrayList<Enemy>()
+    var enemyCount = 0
 
-        //a reference to the gameview
-        private lateinit var gameView: GameView
-        private var h: Int = 0
-        private var w: Int = 0 //height and width of screen
+    //a reference to the gameview
+    private lateinit var gameView: GameView
+    private var h: Int = 0
+    private var w: Int = 0 //height and width of screen
 
 
     //The init code is called when we create a new Game class.
@@ -228,9 +228,11 @@ class Game(private var context: Context,view: TextView) {
 
 
     //CollisionFormula helper function
-    fun collisionFormula(pacX: Int, pacY: Int, objX: Int, objY: Int, width: Int, height: Int): Double {
-        var compareX = (objX - (pacX + (width / 2))).toDouble().pow(2)
-        var compareY = (objY - (pacY + (height / 2))).toDouble().pow(2)
+    fun collisionFormula(pacX: Int, pacY: Int, objX: Int, objY: Int): Double {
+        var pacCenterX = pacx + pacBitmap.width / 2
+        var pacCenterY = pacy + pacBitmap.width / 2
+        var compareX = (objX - (pacCenterX)).toDouble().pow(2)
+        var compareY = (objY - (pacCenterY)).toDouble().pow(2)
         var compare = compareX + compareY
         var distance = sqrt(compare)
         return distance
@@ -244,8 +246,8 @@ class Game(private var context: Context,view: TextView) {
     fun doCollisionCheck() {
         coins.forEach{
             if(!it.taken){
-                var distance = collisionFormula(pacx, pacy, it.coinX, it.coinY, pacBitmap.width, pacBitmap.height)
-                if(distance < 120){
+                var distance = collisionFormula(pacx, pacy, it.coinX, it.coinY)
+                if(distance < 100){
                     coinReset++
                     points += 50
                     it.taken = true
@@ -255,9 +257,11 @@ class Game(private var context: Context,view: TextView) {
                     gameView.invalidate()
                 }
                 if(coinReset == 5) {
+                    //if pacman collects 5 coins. The coins will reset and go to the next level
                     coinsInitialized = false
                     coinReset = 0
                     if(enemyCount < 5){
+                        //next level by increasing the amount of enemies until there's 5
                         initializeEnemies()
                         enemyCount++
                     }
@@ -266,7 +270,7 @@ class Game(private var context: Context,view: TextView) {
             }
         }
         enemies.forEach{
-            var distance = collisionFormula(pacx, pacy, it.enemyX, it.enemyY, pacBitmap.width, pacBitmap.height)
+            var distance = collisionFormula(pacx, pacy, it.enemyX, it.enemyY)
             if (distance < 80) {
                 gameView.post(Runnable {
                     reset()
