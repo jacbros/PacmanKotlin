@@ -1,10 +1,7 @@
 package org.pondar.pacmankotlin
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Matrix
-import android.graphics.Rect
+import android.graphics.*
 import android.widget.TextView
 import java.util.*
 import kotlin.math.*
@@ -229,10 +226,12 @@ class Game(private var context: Context,view: TextView) {
 
     //CollisionFormula helper function
     fun collisionFormula(pacX: Int, pacY: Int, objX: Int, objY: Int): Double {
-        var pacCenterX = pacx + pacBitmap.width / 2
-        var pacCenterY = pacy + pacBitmap.width / 2
-        var compareX = (objX - (pacCenterX)).toDouble().pow(2)
-        var compareY = (objY - (pacCenterY)).toDouble().pow(2)
+        var pacCenterX = pacX + pacBitmap.width / 2
+        var pacCenterY = pacY + pacBitmap.height / 2
+        var coinCenterX = objX + coinBitmap.width / 2
+        var coinCenterY = objY + coinBitmap.height / 2
+        var compareX = (coinCenterX - (pacCenterX)).toDouble().pow(2)
+        var compareY = (coinCenterY - (pacCenterY)).toDouble().pow(2)
         var compare = compareX + compareY
         var distance = sqrt(compare)
         return distance
