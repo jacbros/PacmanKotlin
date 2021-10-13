@@ -212,10 +212,10 @@ class Game(private var context: Context,view: TextView) {
                         override fun run() {
                             if (running) {
                                 when (random) {
-                                    0 -> borderCollisionCheck(it, 0)
-                                    1 -> borderCollisionCheck(it, 1)
-                                    2 -> borderCollisionCheck(it, 2)
-                                    3 -> borderCollisionCheck(it, 3)
+                                    0 -> enemyMove(it, 0)
+                                    1 -> enemyMove(it, 1)
+                                    2 -> enemyMove(it, 2)
+                                    3 -> enemyMove(it, 3)
                                 }
                                 gameView.invalidate()
                             }
@@ -279,7 +279,7 @@ class Game(private var context: Context,view: TextView) {
             }
         }
     }
-    fun borderCollisionCheck(obj: Enemy, direction: Int) {
+    fun enemyMove(obj: Enemy, direction: Int) {
         when (direction) {
             // down
             0 -> if (obj.enemyY + moving + enemyBitmap.height < h) obj.enemyY += moving
