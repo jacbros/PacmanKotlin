@@ -228,10 +228,10 @@ class Game(private var context: Context,view: TextView) {
     fun collisionFormula(pacX: Int, pacY: Int, objX: Int, objY: Int): Double {
         var pacCenterX = pacX + pacBitmap.width / 2
         var pacCenterY = pacY + pacBitmap.height / 2
-        var coinCenterX = objX + coinBitmap.width / 2
-        var coinCenterY = objY + coinBitmap.height / 2
-        var compareX = (coinCenterX - (pacCenterX)).toDouble().pow(2)
-        var compareY = (coinCenterY - (pacCenterY)).toDouble().pow(2)
+        var objCenterX = objX + coinBitmap.width / 2
+        var objCenterY = objY + coinBitmap.height / 2
+        var compareX = (objCenterX - (pacCenterX)).toDouble().pow(2)
+        var compareY = (objCenterY - (pacCenterY)).toDouble().pow(2)
         var compare = compareX + compareY
         var distance = sqrt(compare)
         return distance
