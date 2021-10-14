@@ -200,9 +200,7 @@ class Game(private var context: Context,view: TextView) {
                 }
             }, 0, 1500)
 
-
             enemies.forEach {
-
                 if (!it.kill) {
                     it.kill = true
                     timer2?.scheduleAtFixedRate(object : TimerTask() {
