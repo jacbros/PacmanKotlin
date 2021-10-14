@@ -14,7 +14,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
-    private var timer: Timer = Timer()
     var counter : Int = 0
 
     //reference to the game class.
@@ -59,11 +58,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             game.movePacman(3)
         }
     }
-    override fun onStop() {
-        super.onStop()
-        //just to make sure if the app is killed, that we stop the timer.
-        timer.cancel()
-    }
 
     override fun onClick(v: View) {
         if (v.id == R.id.startButton) {
@@ -72,9 +66,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             game.running = false
         } else if (v.id == R.id.resetButton) {
             counter = 0
-            game.reset() //you should call the newGame method instead of this
+            game.reset()
             game.running = false
-            binding.timerView.text = getString(R.string.timerValue,counter)
         }
     }
 }

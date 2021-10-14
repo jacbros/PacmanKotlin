@@ -18,11 +18,6 @@ class GameView : View {
     fun setGame(game: Game) {
         this.game = game
     }
-
-    private var bitmap = BitmapFactory.decodeResource(resources, R.drawable.pacman)
-    private var coinmap = BitmapFactory.decodeResource(resources, R.drawable.coin)
-    private var pacx = 50
-    private var pacy = 400
     var h: Int = 0
     var w: Int = 0 //used for storing our height and width of the view
 

@@ -11,12 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/points" />
-    <TextView
-        android:id="@+id/timerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="@string/timer_start" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,28 +50,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
         <Button
             android:id="@+id/moveLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/move_left" />
 
-    <Button
-        android:id="@+id/moveRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/move_right" />
+        <Button
+            android:id="@+id/moveRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/move_right" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/move_down"
-        android:id="@+id/moveDown"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/move_up"
-        android:id="@+id/moveUp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/move_down"
+            android:id="@+id/moveDown"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/move_up"
+            android:id="@+id/moveUp"/>
+
     </LinearLayout>
 
 </LinearLayout>
