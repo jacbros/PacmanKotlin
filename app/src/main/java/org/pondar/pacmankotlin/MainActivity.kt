@@ -14,7 +14,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
-    var counter : Int = 0
 
     //reference to the game class.
     private lateinit var game: Game
@@ -65,7 +64,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         } else if (v.id == R.id.stopButton) {
             game.running = false
         } else if (v.id == R.id.resetButton) {
-            counter = 0
             game.reset()
             game.running = false
         }
